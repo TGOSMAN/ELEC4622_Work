@@ -1,0 +1,17 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "BMP_Intro.vcxproj",
+        "Action": "Start",
+        "DebugTarget": "Local Windows Debugger"
+      },
+      {
+        "Path": "..\\ExampleUseBMP\\ExampleUseBMP.vcxproj",
+        "Action": "Start",
+        "DebugTarget": "Local Windows Debugger"
+      }
+    ]
+  }
+]
