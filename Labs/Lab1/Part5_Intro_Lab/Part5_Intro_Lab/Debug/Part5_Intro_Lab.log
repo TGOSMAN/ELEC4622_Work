@@ -1,0 +1,19 @@
+﻿  io_bmp.cpp
+C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\io_bmp.cpp(60,20): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\io_bmp.cpp(184,21): error C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  main.cpp
+C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(5,16): warning C4091: 'typedef ': ignored on left of 'io_comp' when no variable is declared
+  (compiling source file 'main.cpp')
+  
+C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(6,16): warning C4091: 'typedef ': ignored on left of 'io_image' when no variable is declared
+  (compiling source file 'main.cpp')
+  
+C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\main.cpp(10,2): error C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  memOrg.cpp
+C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(5,16): warning C4091: 'typedef ': ignored on left of 'io_comp' when no variable is declared
+  (compiling source file 'memOrg.cpp')
+  
+C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(6,16): warning C4091: 'typedef ': ignored on left of 'io_image' when no variable is declared
+  (compiling source file 'memOrg.cpp')
+  
+  Generating Code...

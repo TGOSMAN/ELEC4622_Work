@@ -1,0 +1,16 @@
+﻿  example_main.cpp
+C:\ELEC4622\ExampleUseBMP\memOrg.h(6,16): warning C4091: 'typedef ': ignored on left of 'io_comp' when no variable is declared
+  (compiling source file '../bmp_io/bmp_io/example_main.cpp')
+  
+C:\ELEC4622\ExampleUseBMP\memOrg.h(11,16): warning C4091: 'typedef ': ignored on left of 'io_image' when no variable is declared
+  (compiling source file '../bmp_io/bmp_io/example_main.cpp')
+  
+  memOrg.cpp
+C:\ELEC4622\ExampleUseBMP\memOrg.h(6,16): warning C4091: 'typedef ': ignored on left of 'io_comp' when no variable is declared
+  (compiling source file 'memOrg.cpp')
+  
+C:\ELEC4622\ExampleUseBMP\memOrg.h(11,16): warning C4091: 'typedef ': ignored on left of 'io_image' when no variable is declared
+  (compiling source file 'memOrg.cpp')
+  
+  Generating Code...
+C:\ELEC4622\ExampleUseBMP\memOrg.cpp(10,1): error C4716: 'IO_ImageNew': must return a value
