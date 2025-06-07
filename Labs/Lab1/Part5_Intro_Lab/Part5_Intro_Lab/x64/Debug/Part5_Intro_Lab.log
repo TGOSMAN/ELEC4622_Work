@@ -1,16 +1,2 @@
-﻿  main.cpp
-C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(5,16): warning C4091: 'typedef ': ignored on left of 'io_comp' when no variable is declared
-  (compiling source file 'main.cpp')
-  
-C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(6,16): warning C4091: 'typedef ': ignored on left of 'io_image' when no variable is declared
-  (compiling source file 'main.cpp')
-  
-  memOrg.cpp
-C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(5,16): warning C4091: 'typedef ': ignored on left of 'io_comp' when no variable is declared
-  (compiling source file 'memOrg.cpp')
-  
-C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\memOrg.h(6,16): warning C4091: 'typedef ': ignored on left of 'io_image' when no variable is declared
-  (compiling source file 'memOrg.cpp')
-  
-  Generating Code...
+﻿  memOrg.cpp
   Part5_Intro_Lab.vcxproj -> C:\GithubRepositories\ELEC4622_Work\Labs\Lab1\Part5_Intro_Lab\x64\Debug\Part5_Intro_Lab.exe

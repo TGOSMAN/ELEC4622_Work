@@ -2,8 +2,8 @@
 #ifndef MEMORG_H
 #define MEMORG_H
 
-typedef struct io_comp;
-typedef struct io_image;
+//typedef struct io_comp;
+//typedef struct io_image;
 
 typedef struct io_comp {
 	int width, height, stride;
@@ -15,5 +15,7 @@ typedef struct io_image {
 	io_comp *comps;
 }io_image;
 
-io_image IO_ImageNew(char* fname);
+io_image *IO_ImageNew(char* fname);
+void IO_ImageWriteBMP(io_image* Input_Image, char* fname);
+void IO_ImageAdd(io_image* Input_Image, int val);
 #endif
