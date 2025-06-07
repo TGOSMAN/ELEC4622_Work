@@ -14,5 +14,6 @@ int main(int argc, char* argv[]) {
 	IO_ImageWriteBMP(sample, name);
 	//sample.num_components += 1;
 	// printf("Sample Num Components %d\n", sample.num_components);
+	IO_ImageDelete(sample);
 	return 0;
 }

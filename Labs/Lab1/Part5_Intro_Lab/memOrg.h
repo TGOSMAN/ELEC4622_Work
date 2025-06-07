@@ -18,4 +18,5 @@ typedef struct io_image {
 io_image *IO_ImageNew(char* fname);
 void IO_ImageWriteBMP(io_image* Input_Image, char* fname);
 void IO_ImageAdd(io_image* Input_Image, int val);
+void IO_ImageDelete(io_image* Input_Image);
 #endif

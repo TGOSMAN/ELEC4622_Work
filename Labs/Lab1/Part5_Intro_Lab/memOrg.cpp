@@ -64,6 +64,7 @@ void IO_ImageWriteBMP(io_image *Input_Image, char*fname){
 	if ((Input_Image == NULL)||(fname == NULL)||(Input_Image->comps == NULL)) {
 		//Need to free memory elegantly
 		fprintf(stderr, "EMPTY BUFFER OR NAME CANNOT WRITE FILE\n");
+
 		return;
 	}
 	bmp_out out;
@@ -128,7 +129,11 @@ void IO_ImageAdd(io_image *Input_Image, int val){
 
 }
 
-void IO_ImageDelete(void) {
-
-
+void IO_ImageDelete(io_image *Input_Image) {
+	for (int i = 0; i < Input_Image->num_components; i++) {
+		delete[] Input_Image->comps[i].handle;
+	}
+	delete[] Input_Image->comps;
+	delete Input_Image;
+	return;
 }
