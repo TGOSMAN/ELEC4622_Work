@@ -53,7 +53,7 @@ void my_image_comp::perform_boundary_extension()
 /*                                apply_filter                               */
 /*****************************************************************************/
 
-void apply_filter(my_image_comp *in, my_image_comp *out)
+void apply_filter(my_image_comp *in, my_image_comp *out, float alpha)
 {
 #define FILTER_EXTENT 4
 #define FILTER_DIM (2*FILTER_EXTENT+1)
@@ -61,14 +61,52 @@ void apply_filter(my_image_comp *in, my_image_comp *out)
 
   // Create the filter kernel as a local array on the stack, which can accept
   // row and column indices in the range -FILTER_EXTENT to +FILTER_EXTENT.
-  float filter_buf[FILTER_TAPS];
+    float filter_buf[FILTER_TAPS] =
+    {0.0F, 1.0F / 3, 0.5F, 1.0F / 3, 0.0,
+        1.0F / 3, 0.5F, 1.0F, 0.5F, 1.0F / 3,
+        0.5F, 1.0F, 1.0F, 1.0F, 0.5F,
+        1.0F / 3, 0.5F, 1.0F, 0.5F, 1.0F / 3,
+        0.0F, 1.0F / 3, 0.5F, 1.0F / 3, 0.0F};
+    //All Filter Coefficients are before normalisation
+    //H3 Manually Mirrored
+    /*{0.25,0.50,0.50,0.25,0.0,0.0,0.0,0.0,0.0,
+        0.50,1.00,1.00,0.50,0.0,0.0,0.0,0.0,0.0,
+        0.50,1.00,1.00,0.50,0.0,0.0,0.0,0.0,0.0,
+        0.25,0.5,0.5,0.25,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0};*/
+
+        
+     //H2 Manually Mirrored for this exercise
+    /*{0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,0.0,
+        0.0,0.0,0.0,0.0,0.0,0.25,0.50,0.50,0.25,
+        0.0,0.0,0.0,0.0,0.0,0.50,1.00,1.00,0.50,
+        0.0,0.0,0.0,0.0,0.0,0.50,1.00,1.00,0.50,
+        0.0,0.0,0.0,0.0,0.0,0.25,0.5,0.5,0.25};*/
+        //H1
+        /*{0.0F, 1.0F / 3, 0.5F, 1.0F / 3, 0.0,
+        1.0F/3, 0.5F, 1.0F, 0.5F, 1.0F/3, 
+        0.5F, 1.0F, 1.0F, 1.0F, 0.5F,
+        1.0F/3, 0.5F, 1.0F, 0.5F, 1.0F/3,
+        0.0F, 1.0F/3, 0.5F, 1.0F/3, 0.0F};*/
+
+
   float *mirror_psf = filter_buf+(FILTER_DIM*FILTER_EXTENT)+FILTER_EXTENT;
           // `mirror_psf' points to the central tap in the filter
   int r, c;
-  for (r=-FILTER_EXTENT; r <= FILTER_EXTENT; r++)
-    for (c=-FILTER_EXTENT; c <= FILTER_EXTENT; c++)
-      mirror_psf[r*FILTER_DIM+c] = 1.0F / FILTER_TAPS;
-
+  float normalization_A = 3.0F / 35;
+  float normalization_B = 1.0F / 9.0;
+for (r = -FILTER_EXTENT; r <= FILTER_EXTENT; r++)
+    for (c = -FILTER_EXTENT; c <= FILTER_EXTENT; c++)
+        mirror_psf[r * FILTER_DIM + c] = (mirror_psf[r * FILTER_DIM + c]) * normalization_A;
+   
   // Check for consistent dimensions
   assert(in->border >= FILTER_EXTENT);
   assert((out->height <= in->height) && (out->width <= in->width));
@@ -131,7 +169,9 @@ int
             }
         }
       bmp_in__close(&in);
-
+      float alpha;
+      printf("Enter Alpha\r\n");
+      printf("Alpha Is %f", alpha);
       // Allocate storage for the filtered output
       my_image_comp *output_comps = new my_image_comp[num_comps];
       for (n=0; n < num_comps; n++)
@@ -141,7 +181,7 @@ int
       for (n=0; n < num_comps; n++)
         input_comps[n].perform_boundary_extension();
       for (n=0; n < num_comps; n++)
-        apply_filter(input_comps+n,output_comps+n);
+        apply_filter(input_comps+n,output_comps+n,alpha);
 
       // Write the image back out again
       bmp_out out;

@@ -12,11 +12,12 @@
 #include <assert.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <cstdint>
 
 // Simple data types
-typedef unsigned long io_uint32;
-typedef long io_int32;
-typedef unsigned char io_byte;
+typedef uint32_t io_uint32;
+typedef int32_t io_int32;
+typedef uint8_t io_byte;
 
 // Error codes
 #define IO_ERR_NO_FILE          ((int) -1) /* If file not found */
