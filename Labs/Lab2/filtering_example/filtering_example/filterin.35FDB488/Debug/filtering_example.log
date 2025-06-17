@@ -1,0 +1,5 @@
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+  io_bmp.cpp
+  filtering_main.cpp
+  Generating Code...
+  filtering_example.vcxproj -> C:\Github_Repos\ELEC4622_Work\Labs\Lab2\filtering_example\filtering_example\Debug\filtering_example.exe
