@@ -23,15 +23,15 @@ void my_image_comp::perform_boundary_extension()
 
   // First extend upwards
   float *first_line = buf;
-  for (r=1; r <= border; r++)
-    for (c=0; c < width; c++)
-      first_line[-r*stride+c] = first_line[c];
+  for (r = 1; r <= border; r++)
+      for (c = 0; c < width; c++)
+          first_line[-r * stride + c] = first_line[r * stride + c];
 
   // Now extend downwards
   float *last_line = buf+(height-1)*stride;
-  for (r=1; r <= border; r++)
-    for (c=0; c < width; c++)
-      last_line[r*stride+c] = last_line[c];
+  for (r = 1; r <= border; r++)
+      for (c = 0; c < width; c++)
+          last_line[r * stride + c] = last_line[- r* stride + c];
 
   // Now extend all rows to the left and to the right
   float *left_edge = buf-border*stride;
@@ -39,8 +39,8 @@ void my_image_comp::perform_boundary_extension()
   for (r=height+2*border; r > 0; r--, left_edge+=stride, right_edge+=stride)
     for (c=1; c <= border; c++)
       {
-        left_edge[-c] = left_edge[0];
-        right_edge[c] = right_edge[0];
+        left_edge[-c] = left_edge[c];
+        right_edge[c] = right_edge[-c];
       }
 }
 
@@ -197,7 +197,7 @@ int
         input_comps[n].perform_boundary_extension();
       for (n=0; n < num_comps; n++)
         apply_filter(input_comps+n,output_comps+n,alpha);
-
+      int temp_val;
       // Write the image back out again
       bmp_out out;
       if ((err_code = bmp_out__open(&out,argv[2],width,height,num_comps)) != 0)
@@ -209,16 +209,20 @@ int
             {
               io_byte *dst = line+n; // Points to first sample of component n
               float *src = output_comps[n].buf + r * output_comps[n].stride;
-              for (int c=0; c < width; c++, dst+=num_comps)
-                  if (src[c] < 0.0F) {
+              for (int c = 0; c < width; c++, dst += num_comps) {
+                  temp_val = (int)(src[c] + 0.5);
+                  if (temp_val < 0) {
                       *dst = 0;
                   }
-                  else if (src[c] > 255.0F) {
+                  else if (temp_val > 255) {
                       *dst = 255;
                   }
                   else {
-                      *dst = (io_byte)src[c];
+                      *dst = (io_byte) temp_val;
                   }
+              
+              }
+
                 //*dst = (io_byte) src[c]; 
                       // The cast to type "io_byte" is
                       // required here, since floats cannot generally be

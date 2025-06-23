@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LocalDebuggerCommandArguments>"C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb.bmp" "C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb_filtered.bmp" "1.0"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb.bmp" "C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb_filtered.bmp" "0.5"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LocalDebuggerCommandArguments>"C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb.bmp" "C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb_filtered.bmp" "1.0"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb.bmp" "C:\Github_Repos\ELEC4622_Work\Labs\Lab2\slot1\Data\pens_rgb_filtered.bmp" "0.5"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
