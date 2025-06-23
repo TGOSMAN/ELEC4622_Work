@@ -67,6 +67,12 @@ void apply_filter(my_image_comp *in, my_image_comp *out, float alpha)
         0.5F, 1.0F, 1.0F, 1.0F, 0.5F,
         1.0F / 3, 0.5F, 1.0F, 0.5F, 1.0F / 3,
         0.0F, 1.0F / 3, 0.5F, 1.0F / 3, 0.0F};
+    float unsharp_filter[FILTER_TAPS] = { 0.0F };
+ 
+    //mirror image or our sharpening filter; Unsharp == uniform sharpening
+    float *mirror_psf_unsharp = unsharp_filter +(FILTER_DIM * FILTER_EXTENT) + FILTER_EXTENT;
+    //Impulse Value at center
+
     //All Filter Coefficients are before normalisation
     //H3 Manually Mirrored
     /*{0.25,0.50,0.50,0.25,0.0,0.0,0.0,0.0,0.0,
@@ -103,10 +109,19 @@ void apply_filter(my_image_comp *in, my_image_comp *out, float alpha)
   int r, c;
   float normalization_A = 3.0F / 35;
   float normalization_B = 1.0F / 9.0;
+  //so that only one multiply is required
+  float SharpeningNorm = normalization_A * alpha;
 for (r = -FILTER_EXTENT; r <= FILTER_EXTENT; r++)
     for (c = -FILTER_EXTENT; c <= FILTER_EXTENT; c++)
-        mirror_psf[r * FILTER_DIM + c] = (mirror_psf[r * FILTER_DIM + c]) * normalization_A;
-   
+        if ((r == 0)&& (c == 0)) {
+            mirror_psf_unsharp[r * FILTER_DIM + c] = 1.0F;
+        }
+        else {
+            mirror_psf_unsharp[r* FILTER_DIM + c] = -(mirror_psf[r * FILTER_DIM + c]) * SharpeningNorm;
+        
+        }
+         
+    mirror_psf = mirror_psf_unsharp;
   // Check for consistent dimensions
   assert(in->border >= FILTER_EXTENT);
   assert((out->height <= in->height) && (out->width <= in->width));
@@ -132,7 +147,7 @@ for (r = -FILTER_EXTENT; r <= FILTER_EXTENT; r++)
 int
   main(int argc, char *argv[])
 {
-  if (argc != 3)
+  if (argc != 4)
     {
       fprintf(stderr,"Usage: %s <in bmp file> <out bmp file>\n",argv[0]);
       return -1;
@@ -170,8 +185,8 @@ int
         }
       bmp_in__close(&in);
       float alpha;
-      printf("Enter Alpha\r\n");
-      printf("Alpha Is %f", alpha);
+      sscanf(argv[3], "%f", &alpha);
+      printf("Alpha is %f\n",alpha);
       // Allocate storage for the filtered output
       my_image_comp *output_comps = new my_image_comp[num_comps];
       for (n=0; n < num_comps; n++)
@@ -195,7 +210,8 @@ int
               io_byte *dst = line+n; // Points to first sample of component n
               float *src = output_comps[n].buf + r * output_comps[n].stride;
               for (int c=0; c < width; c++, dst+=num_comps)
-                *dst = (io_byte) src[c]; // The cast to type "io_byte" is
+                *dst = (io_byte) src[c]; 
+                      // The cast to type "io_byte" is
                       // required here, since floats cannot generally be
                       // converted to bytes without loss of information.  The
                       // compiler will warn you of this if you remove the cast.
