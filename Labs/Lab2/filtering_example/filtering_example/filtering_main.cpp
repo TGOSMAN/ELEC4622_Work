@@ -210,7 +210,16 @@ int
               io_byte *dst = line+n; // Points to first sample of component n
               float *src = output_comps[n].buf + r * output_comps[n].stride;
               for (int c=0; c < width; c++, dst+=num_comps)
-                *dst = (io_byte) src[c]; 
+                  if (src[c] < 0.0F) {
+                      *dst = 0;
+                  }
+                  else if (src[c] > 255.0F) {
+                      *dst = 255;
+                  }
+                  else {
+                      *dst = (io_byte)src[c];
+                  }
+                //*dst = (io_byte) src[c]; 
                       // The cast to type "io_byte" is
                       // required here, since floats cannot generally be
                       // converted to bytes without loss of information.  The
