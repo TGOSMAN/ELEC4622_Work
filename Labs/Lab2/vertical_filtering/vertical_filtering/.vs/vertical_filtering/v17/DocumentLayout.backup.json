@@ -1,0 +1,37 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Github_Repos\\ELEC4622_Work\\Labs\\Lab2\\vertical_filtering\\vertical_filtering\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5DECF395-E0D9-4CE0-82A4-2B84B0CD0564}|vertical_filtering.vcxproj|C:\\Github_Repos\\ELEC4622_Work\\Labs\\Lab2\\vertical_filtering\\vertical_filtering\\vertical_filtering_main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{5DECF395-E0D9-4CE0-82A4-2B84B0CD0564}|vertical_filtering.vcxproj|solutionrelative:vertical_filtering_main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "vertical_filtering_main.cpp",
+              "DocumentMoniker": "C:\\Github_Repos\\ELEC4622_Work\\Labs\\Lab2\\vertical_filtering\\vertical_filtering\\vertical_filtering_main.cpp",
+              "RelativeDocumentMoniker": "vertical_filtering_main.cpp",
+              "ToolTip": "C:\\Github_Repos\\ELEC4622_Work\\Labs\\Lab2\\vertical_filtering\\vertical_filtering\\vertical_filtering_main.cpp",
+              "RelativeToolTip": "vertical_filtering_main.cpp",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-24T05:13:29.163Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

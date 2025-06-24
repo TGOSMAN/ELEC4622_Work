@@ -1,0 +1,8 @@
+﻿  io_bmp.cpp
+  vector_filter.cpp
+  vertical_filtering_main.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+  All 18 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  vertical_filtering.vcxproj -> C:\Github_Repos\ELEC4622_Work\Labs\Lab2\vertical_filtering\vertical_filtering\Release\vertical_filtering.exe
