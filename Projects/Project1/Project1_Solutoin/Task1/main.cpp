@@ -180,22 +180,27 @@ main(int argc, char* argv[])
         //WARNING FOR LATER: Might need to spread from the center since this could possibly be causing a shift which is no good 
         my_image_comp* input_comps = new my_image_comp[num_comps];
         for (n = 0; n < num_comps; n++)
-            input_comps[n].init(3*height, 3*width, 4); // Leave a border of 4 -> reevaluate what we need to missor teh next sample
+            input_comps[n].init(3*height, 3*width, 0); // Leave a border of 4 -> reevaluate what we need to missor teh next sample
         int r; // Declare row index
         io_byte* line = new io_byte[width * num_comps];
-        for (r = height - 1; r >= 0; r--)
+        for (r = 3*height - 1; r >= 0; r--)
         { // "r" holds the true row index we are reading, since the image is
           // stored upside down in the BMP file.
-          // Note: r is decremented by 3 since image is store at intervals of 3 apart and height must be a multiple of 3 (this would not work if it wasnt)
-            if ((err_code = bmp_in__get_line(&in, line)) != 0)
+          // Note: r is decremented by 3 since image is store at intervals of 3 apart and height must be a multiple of 3 (this would not work if it wasn't)
+            /*if ((err_code = bmp_in__get_line(&in, line)) != 0)
                 throw err_code;
-            for (n = 0; n < num_comps; n++)
+            */
+            if (r % 3 == 0) {
+                bmp_in__get_line(&in, line);
+            }
+            
+            for (n = 0; n < 1; n++)
             {
                 io_byte* src = line + n; // Points to first sample of component n
-                float* dst = input_comps[n].buf + 3*r * input_comps[n].stride;
-                for (int c = 0; c < width; c++, src += num_comps)
+                float* dst = input_comps[n].buf + r * input_comps[n].stride;
+                for (int c = 0; c < 3*width; c++, src += num_comps)
                     //note that the src increments by one whilst our destination will increment over by 3
-                    if ((r%3 == 0)&&(c % 3 == 0)) {
+                    if ((r%3 == 0)&&(c%3 == 0)) {
                         dst[3*c] = (float)*src;
                     }
                     else {
@@ -210,7 +215,7 @@ main(int argc, char* argv[])
         // Allocate storage for the filtered output
         my_image_comp* output_comps = new my_image_comp[num_comps];
         for (n = 0; n < num_comps; n++)
-            output_comps[n].init(height, width, 0); // Don't need a border for output
+            output_comps[n].init(3*height, 3*width, 0); // Don't need a border for output
 
         // Process the image, all in floating point (easy)
         for (n = 0; n < num_comps; n++)
@@ -220,6 +225,7 @@ main(int argc, char* argv[])
         int temp_val;
         */
         int temp_val;
+        io_byte* lineOut = new io_byte[3*width * num_comps];
         // Write the image back out again
         bmp_out out;
         if ((err_code = bmp_out__open(&out, argv[2], 3*width, 3*height, num_comps)) != 0)
@@ -229,9 +235,9 @@ main(int argc, char* argv[])
           // written upside down in BMP files.
             for (n = 0; n < num_comps; n++)
             {
-                io_byte* dst = line + n; // Points to first sample of component n
+                io_byte* dst = lineOut + n; // Points to first sample of component n
                 float* src = input_comps[n].buf + r * input_comps[n].stride;
-                for (int c = 0; c < 3*width; c++, dst += num_comps) {
+                for (int c = 0; c < 3*width ; c++, dst += num_comps) {
                     temp_val = (int)(src[c] + 0.5);
                     if (temp_val < 0) {
                         *dst = 0;
@@ -253,9 +259,10 @@ main(int argc, char* argv[])
                       // There is in fact not the best way to do the
                       // conversion.  You should fix it up in the lab.
             }
-            bmp_out__put_line(&out, line);
+            bmp_out__put_line(&out, lineOut);
         }
         bmp_out__close(&out);
+        delete[] lineOut;
         delete[] line;
         delete[] input_comps;
         delete[] output_comps;
