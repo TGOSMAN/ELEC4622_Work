@@ -1,4 +1,6 @@
 #include <stdio.h>
+#include <emmintrin.h>
+#include "io_bmp.h"
 
 
 int main(void) {
