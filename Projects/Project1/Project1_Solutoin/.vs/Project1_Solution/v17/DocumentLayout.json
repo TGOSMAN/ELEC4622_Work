@@ -1,14 +1,18 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\",
+  "WorkspaceRootPath": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|solutionrelative:Task1\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\io_bmp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\io_bmp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|solutionrelative:Task1\\io_bmp.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\image_comps.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{720DAC59-8E41-4108-8092-1FE9FFC1DD03}|Task1\\Task1.vcxproj|solutionrelative:Task1\\image_comps.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +22,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,13 +30,26 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "image_comps.h",
+              "DocumentMoniker": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\image_comps.h",
+              "RelativeDocumentMoniker": "Task1\\image_comps.h",
+              "ToolTip": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\image_comps.h",
+              "RelativeToolTip": "Task1\\image_comps.h",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABkAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-25T05:22:42.736Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "io_bmp.cpp",
-              "DocumentMoniker": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\io_bmp.cpp",
+              "DocumentMoniker": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\io_bmp.cpp",
               "RelativeDocumentMoniker": "Task1\\io_bmp.cpp",
-              "ToolTip": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\io_bmp.cpp",
+              "ToolTip": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\io_bmp.cpp",
               "RelativeToolTip": "Task1\\io_bmp.cpp",
-              "ViewState": "AgIAAKAAAAAAAAAAAAAiwLcAAAAvAAAAAAAAAA==",
+              "ViewState": "AgIAADUAAAAAAAAAAAAnwEsAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-25T00:21:01.015Z",
               "EditorCaption": ""
@@ -41,11 +58,11 @@
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\main.cpp",
+              "DocumentMoniker": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\main.cpp",
               "RelativeDocumentMoniker": "Task1\\main.cpp",
-              "ToolTip": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\main.cpp",
+              "ToolTip": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task1\\main.cpp",
               "RelativeToolTip": "Task1\\main.cpp",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAKAAAAAAAAAA==",
+              "ViewState": "AgIAANIAAAAAAAAAAAArwP8AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-24T07:49:19.117Z",
               "EditorCaption": ""

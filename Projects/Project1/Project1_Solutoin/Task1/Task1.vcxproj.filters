@@ -26,5 +26,8 @@
     <ClInclude Include="io_bmp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="image_comps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
