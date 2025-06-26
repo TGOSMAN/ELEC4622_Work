@@ -193,15 +193,17 @@ main(int argc, char* argv[])
             if (r % 3 == 0) {
                 bmp_in__get_line(&in, line);
             }
+
             
-            for (n = 0; n < 1; n++)
+            for (n = 0; n < 3; n++)
             {
                 io_byte* src = line + n; // Points to first sample of component n
                 float* dst = input_comps[n].buf + r * input_comps[n].stride;
-                for (int c = 0; c < 3*width; c++, src += num_comps)
+                for (int c = 0; c < 3*width; c++)
                     //note that the src increments by one whilst our destination will increment over by 3
                     if ((r%3 == 0)&&(c%3 == 0)) {
-                        dst[3*c] = (float)*src;
+                        dst[c] = (float) *src;
+                        src += num_comps;
                     }
                     else {
                         dst[c] = 0.0f;
