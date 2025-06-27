@@ -190,7 +190,7 @@ main(int argc, char* argv[])
             /*if ((err_code = bmp_in__get_line(&in, line)) != 0)
                 throw err_code;
             */
-            if (r % 3 == 0) {
+            if (r % 3 == 1) {
                 bmp_in__get_line(&in, line);
             }
 
@@ -201,7 +201,7 @@ main(int argc, char* argv[])
                 float* dst = input_comps[n].buf + r * input_comps[n].stride;
                 for (int c = 0; c < 3*width; c++)
                     //note that the src increments by one whilst our destination will increment over by 3
-                    if ((r%3 == 0)&&(c%3 == 0)) {
+                    if ((r%3 == 1)&&(c%3 == 1)) {
                         dst[c] = (float) *src;
                         src += num_comps;
                     }
