@@ -20,6 +20,10 @@
 /*                  my_image_comp::perform_boundary_extension                */
 /*****************************************************************************/
 
+
+
+
+
 void my_image_comp::perform_boundary_extension()
 {
     int r, c;
@@ -27,13 +31,13 @@ void my_image_comp::perform_boundary_extension()
     float* first_line = buf;
     for (r = 1; r <= border; r++)
         for (c = 0; c < width; c++)
-            first_line[-r * stride + c] = first_line[r * stride + c];
+            first_line[-r * stride + c] = first_line[(r-1) * stride + c];
 
     // Now extend downwards
     float* last_line = buf + (height - 1) * stride;
     for (r = 1; r <= border; r++)
         for (c = 0; c < width; c++)
-            last_line[r * stride + c] = last_line[-r * stride + c];
+            last_line[r * stride + c] = last_line[(1- r)* stride + c];
 
     // Now extend all rows to the left and to the right
     float* left_edge = buf - border * stride;
@@ -41,8 +45,8 @@ void my_image_comp::perform_boundary_extension()
     for (r = height + 2 * border; r > 0; r--, left_edge += stride, right_edge += stride)
         for (c = 1; c <= border; c++)
         {
-            left_edge[-c] = left_edge[c];
-            right_edge[c] = right_edge[-c];
+            left_edge[-c] = left_edge[c-1];
+            right_edge[c] = right_edge[1-c];
         }
 }
 
@@ -54,6 +58,8 @@ void my_image_comp::perform_boundary_extension()
 /*****************************************************************************/
 /*                                apply_filter                               */
 /*****************************************************************************/
+
+
 
 void apply_filter(my_image_comp* in, my_image_comp* out, float alpha)
 {
@@ -142,6 +148,47 @@ void apply_filter(my_image_comp* in, my_image_comp* out, float alpha)
         }
 }
 
+
+/*
+    Bilinear Interpolation Function:
+    
+    Description:
+    This function will be used to perform Bilinear Interpolation on a single image
+    component using an integer expansion factor as a key measure.
+*/
+void bilInterp(my_image_comp* in, int expansionFactor) {
+    int xWindow_extent = expansionFactor;
+    float* XwindowEntry = in->handle;//in->buf +(in->stride) - (in->border);//line up with top left corner of Actual Image then down one row and right across to the border
+    //Horizontal Interpolation on select rows
+    for (int r = 0; r < in->height + 2*(in->border); r+=expansionFactor)
+    {
+        float* Xwindow = XwindowEntry + r*(in->stride);
+        for (int xshift = 0; xshift <= (in->width); xshift += expansionFactor, Xwindow = XwindowEntry + r * (in->stride) + xshift)
+        {
+            //Should slide across in blocks
+            for (int i = 1; i < expansionFactor; i++)
+            {
+                Xwindow[i] = (1.0 / expansionFactor) * (Xwindow[expansionFactor] - Xwindow[0]) * i + Xwindow[0];
+            }
+        }
+    }
+    //Vertical Interpolation on all columns (processed horizontally)
+    for (int r = 0; r <= in->height; r += expansionFactor)
+    {
+        float* Xwindow = XwindowEntry + r * (in->stride);
+        for (int xshift = 0; xshift < (in->width) + (in->border); xshift++, Xwindow = XwindowEntry + r * (in->stride) + xshift)
+        {
+            //Should slide across in blocks
+            for (int i = 1; i < expansionFactor; i++)
+            {
+                Xwindow[i*(in->stride)] = (1.0 / expansionFactor) * (Xwindow[expansionFactor * (in->stride)] - Xwindow[0]) * i + Xwindow[0];
+            }
+        }
+    }
+    return;
+}
+
+
 /*****************************************************************************/
 /*                                    main                                   */
 /*****************************************************************************/
@@ -180,7 +227,7 @@ main(int argc, char* argv[])
         //WARNING FOR LATER: Might need to spread from the center since this could possibly be causing a shift which is no good 
         my_image_comp* input_comps = new my_image_comp[num_comps];
         for (n = 0; n < num_comps; n++)
-            input_comps[n].init(3*height, 3*width, 0); // Leave a border of 4 -> reevaluate what we need to missor teh next sample
+            input_comps[n].init(3*height, 3*width, 2); // Leave a border of 4 -> reevaluate what we need to missor teh next sample
         int r; // Declare row index
         io_byte* line = new io_byte[width * num_comps];
         for (r = 3*height - 1; r >= 0; r--)
@@ -195,7 +242,7 @@ main(int argc, char* argv[])
             }
 
             
-            for (n = 0; n < 3; n++)
+            for (n = 0; n < num_comps; n++)
             {
                 io_byte* src = line + n; // Points to first sample of component n
                 float* dst = input_comps[n].buf + r * input_comps[n].stride;
@@ -222,10 +269,10 @@ main(int argc, char* argv[])
         // Process the image, all in floating point (easy)
         for (n = 0; n < num_comps; n++)
             input_comps[n].perform_boundary_extension();
-        /*for (n = 0; n < num_comps; n++)
-            apply_filter(input_comps + n, output_comps + n, alpha);
-        int temp_val;
-        */
+        for (n = 0; n < num_comps; n++)
+            bilInterp(input_comps + n, 3);
+  
+        
         int temp_val;
         io_byte* lineOut = new io_byte[3*width * num_comps];
         // Write the image back out again
