@@ -197,18 +197,132 @@ void bilInterp(my_image_comp* in, int expansionFactor) {
 
 void sincInterp(my_image_comp* in, int h) {
     int xWindow_extent = 2*h+1;
-    float* XwindowEntry = in->handle;//in->buf +(in->stride) - (in->border);//line up with top left corner of Actual Image then down one row and right across to the border
+    float* XwindowEntry = in->buf;//in->buf +(in->stride) - (in->border);//line up with top left corner of Actual Image then down one row and right across to the border
+    float* ip = in->handle;//input Pointer to keep Track Of values in terms of multiple of 3
+    float* op = in->handle;//
+    /*float* const float *interpKernF ;
+    const float* const float *interpKernB;*/
+    //Choose the correct precomputed interpolation kernel
+    const float* interpKernF = NULL;
+    const float* interpKernB = NULL;
+    switch (h) {
+        case(1):
+        {
+            const float *interpKernF = sincAdd1_3_1;
+            const float *interpKernB = sincSub1_3_1;
+            break;
+        }
+        case(2):
+        {
+            const float *interpKernF = sincAdd1_3_2;
+            const float *interpKernB = sincSub1_3_2;
+            break;
+        }
+        case(3):
+        {
+            const float *interpKernF = sincAdd1_3_3;
+            const float *interpKernB = sincSub1_3_3;
+            break;
+        }
+        case(4):
+        {
+            const float *interpKernF = sincAdd1_3_4;
+            const float *interpKernB = sincSub1_3_4;
+            break;
+        }
+        case(5):
+        {
+            const float *interpKernF = sincAdd1_3_5;
+            const float *interpKernB = sincSub1_3_5;
+            break;
+        }
+        case(6):
+        {
+            const float *interpKernF = sincAdd1_3_6;
+            const float *interpKernB = sincSub1_3_6;
+            break;
+        }
+        case(7):
+        {
+            const float *interpKernF = sincAdd1_3_7;
+            const float *interpKernB = sincSub1_3_7;
+            break;
+        }
+        case(8):
+        {
+            const float *interpKernF = sincAdd1_3_8;
+            const float *interpKernB = sincSub1_3_8;
+            break;
+        }
+        case(9):
+        {
+            const float *interpKernF = sincAdd1_3_9;
+            const float *interpKernB = sincSub1_3_9;
+            break;
+        }
+        case(10):
+        {
+            const float *interpKernF = sincAdd1_3_10;
+            const float *interpKernB = sincSub1_3_10;
+            break;
+        }
+        case(11):
+        {
+            const float *interpKernF = sincAdd1_3_11;
+            const float *interpKernB = sincSub1_3_11;
+            break;
+        }
+        case(12):
+        {
+            const float *interpKernF = sincAdd1_3_12;
+            const float *interpKernB = sincSub1_3_12;
+            break;
+        }
+        case(13):
+        {
+            const float *interpKernF = sincAdd1_3_13;
+            const float *interpKernB = sincSub1_3_13;
+            break;
+        }
+        case(14):
+        {
+            const float *interpKernF = sincAdd1_3_14;
+            const float *interpKernB = sincSub1_3_14;
+            break;
+        }
+        case(15):
+        {
+            const float *interpKernF = sincAdd1_3_15;
+            const float *interpKernB = sincSub1_3_15;
+            break;
+        }
+        case(0):
+        {
+            const float *interpKernF = sincAdd1_3_0;
+            const float *interpKernB = sincSub1_3_0;
+            break;
+        }
+        default:
+        {
+            const float* interpKernF = sincAdd1_3_0;
+            const float* interpKernB = sincSub1_3_0;
+        }
+    }
     //Horizontal Interpolation on select rows
     for (int r = 0; r < in->height + 2 * (in->border); r += 3)
     {
         float* Xwindow = XwindowEntry + r * (in->stride);
         for (int xshift = 0; xshift <= (in->width); xshift++, Xwindow = XwindowEntry + r * (in->stride) + xshift)
         {
-           
+           //will hit issue regarding the ordering
             //Should slide across in blocks
-
-            Xwindow[1] = 1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
-            Xwindow[2] = 1.0;//3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+            for (int i = -h; i < h; i++) {
+                Xwindow[2] += ip[-i * 3] * interpKernB[i];
+                Xwindow[1] += ip[-i*3]*interpKernF[i];//1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+                //3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+            
+            }
+            
         }
     }
     //Vertical Interpolation on all columns (processed horizontally)
@@ -216,7 +330,7 @@ void sincInterp(my_image_comp* in, int h) {
     {
         float* Xwindow = XwindowEntry + r * (in->stride);
         for (int xshift = 0; xshift < (in->width) + (in->border); xshift++, Xwindow = XwindowEntry + r * (in->stride) + xshift)
-        {
+        {   
             Xwindow[1* (in->stride)] = 1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
             Xwindow[2* (in->stride)] = 1.0;//3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
         }
@@ -232,7 +346,7 @@ int
 main(int argc, char* argv[])
 {
     /*CMD Line Args: <input image> <output image> */
-    if (argc != 3)
+    if (argc != 4)
     {
         fprintf(stderr, "Usage: %s <in bmp file> <out bmp file>\n", argv[0]);
         return -1;
@@ -257,8 +371,9 @@ main(int argc, char* argv[])
         * bilinear interpolation will only operate between the sample point hence this is a better use
         * of memory.
         */
-
-
+        int h;
+        sscanf(argv[3], "%d",&h);
+        printf("H VALUE: %d\n",h);
         //NOTE: For later only need to consider a single image component which is green if RGB there should be no direct impact intially however it is just bloat otherwise
         //WARNING FOR LATER: Might need to spread from the center since this could possibly be causing a shift which is no good 
         my_image_comp* input_comps = new my_image_comp[num_comps];
@@ -301,15 +416,11 @@ main(int argc, char* argv[])
         }
         bmp_in__close(&in);
         // Allocate storage for the filtered output
-        my_image_comp* output_comps = new my_image_comp[num_comps];
-        for (n = 0; n < num_comps; n++)
-            output_comps[n].init(3 * height, 3 * width, 0); // Don't need a border for output
-
         // Process the image, all in floating point (easy)
         for (n = 0; n < num_comps; n++)
             input_comps[n].perform_boundary_extension();
-        for (n = 0; n < num_comps; n++)
-            bilInterp(input_comps + n, 3);
+        /*for (n = 0; n < num_comps; n++)
+            bilInterp(input_comps + n, 3);*/
 
 
         int temp_val;
@@ -357,7 +468,7 @@ main(int argc, char* argv[])
         delete[] lineOut;
         delete[] line;
         delete[] input_comps;
-        delete[] output_comps;
+        //delete[] output_comps;
     }
     catch (int exc)
     {
