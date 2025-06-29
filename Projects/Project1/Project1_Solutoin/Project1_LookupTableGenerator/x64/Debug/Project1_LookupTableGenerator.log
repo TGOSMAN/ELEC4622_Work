@@ -1,0 +1,7 @@
+﻿  Project1_LookupTableGenerator.cpp
+C:\GithubRepositories\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Project1_LookupTableGenerator\Project1_LookupTableGenerator.cpp(15,16): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
+C:\GithubRepositories\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Project1_LookupTableGenerator\Project1_LookupTableGenerator.cpp(31,19): warning C4129: '/': unrecognized character escape sequence
+C:\GithubRepositories\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Project1_LookupTableGenerator\Project1_LookupTableGenerator.cpp(32,19): warning C4129: '/': unrecognized character escape sequence
+C:\GithubRepositories\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Project1_LookupTableGenerator\Project1_LookupTableGenerator.cpp(33,19): warning C4129: '*': unrecognized character escape sequence
+C:\GithubRepositories\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Project1_LookupTableGenerator\Project1_LookupTableGenerator.cpp(34,19): warning C4129: '*': unrecognized character escape sequence
+  Project1_LookupTableGenerator.vcxproj -> C:\GithubRepositories\ELEC4622_Work\Projects\Project1\Project1_Solutoin\x64\Debug\Project1_LookupTableGenerator.exe
