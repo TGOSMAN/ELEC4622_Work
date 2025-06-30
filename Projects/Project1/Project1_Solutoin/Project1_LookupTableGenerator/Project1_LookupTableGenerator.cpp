@@ -20,7 +20,7 @@ float scaledShifted_sinc(float alpha, float k) {
     {
         return 1.0f;
     }
-    float result = sin(pi_f*k/alpha)/(pi_f*k /alpha);//(1/powf(alpha,2))
+    float result = (1 / powf(alpha, 2))*sin(pi_f*k/alpha)/(pi_f*k /alpha);//(1/powf(alpha,2))
     return result;
 
 }
