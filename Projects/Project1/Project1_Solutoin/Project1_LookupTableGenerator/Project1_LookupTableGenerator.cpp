@@ -20,7 +20,7 @@ float scaledShifted_sinc(float alpha, float k) {
     {
         return 1.0f;
     }
-    float result = (1 / powf(alpha, 2))*sin(pi_f*k/alpha)/(pi_f*k /alpha);//(1/powf(alpha,2))
+    float result = sin(pi_f*k/alpha)/(pi_f*k /alpha);//(1/powf(alpha,2))
     return result;
 
 }
@@ -42,7 +42,7 @@ int main(void)
         for (int i = 0; i < (2 * h) + 1; i++)
         {
             float TAPS = (float)(2 * h) + 1;
-            float res1 = scaledShifted_sinc(3, (float) (i - h) + 1);
+            float res1 = scaledShifted_sinc(3, (float) 3*(i - h) + 1);
             windval = raiseCosine(TAPS/2,(float) (i-h) );
             if (i == 2 * h)
             {
@@ -66,7 +66,7 @@ int main(void)
         for (int i = 0; i < (2 * h) + 1; i++)
         {
             float TAPS = (float)(2 * h) + 1;
-            float res1 = scaledShifted_sinc(3, (float)(i - h) - 1);
+            float res1 = scaledShifted_sinc(3, (float)3*(i - h) - 1);
             windval = raiseCosine(TAPS / 2, (float)(i - h));
             if (i == 2 * h)
             {

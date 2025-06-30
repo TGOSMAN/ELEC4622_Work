@@ -209,14 +209,14 @@ void sincInterp(my_image_comp* in, int h) {
     switch (h) {
         case(1):
         {
-            const float *interpKernF = sincAdd1_3_1;
-            const float *interpKernB = sincSub1_3_1;
+            interpKernF = sincAdd1_3_1;
+            interpKernB = sincSub1_3_1;
             break;
         }
         case(2):
         {
-            const float *interpKernF = sincAdd1_3_2;
-            const float *interpKernB = sincSub1_3_2;
+            interpKernF = sincAdd1_3_2;
+            interpKernB = sincSub1_3_2;
             break;
         }
         case(3):
@@ -227,80 +227,80 @@ void sincInterp(my_image_comp* in, int h) {
         }
         case(4):
         {
-            const float *interpKernF = sincAdd1_3_4;
-            const float *interpKernB = sincSub1_3_4;
+            interpKernF = sincAdd1_3_4;
+            interpKernB = sincSub1_3_4;
             break;
         }
         case(5):
         {
-            const float *interpKernF = sincAdd1_3_5;
-            const float *interpKernB = sincSub1_3_5;
+            interpKernF = sincAdd1_3_5;
+            interpKernB = sincSub1_3_5;
             break;
         }
         case(6):
         {
-            const float *interpKernF = sincAdd1_3_6;
-            const float *interpKernB = sincSub1_3_6;
+            interpKernF = sincAdd1_3_6;
+            interpKernB = sincSub1_3_6;
             break;
         }
         case(7):
         {
-            const float *interpKernF = sincAdd1_3_7;
-            const float *interpKernB = sincSub1_3_7;
+            interpKernF = sincAdd1_3_7;
+            interpKernB = sincSub1_3_7;
             break;
         }
         case(8):
         {
-            const float *interpKernF = sincAdd1_3_8;
-            const float *interpKernB = sincSub1_3_8;
+            interpKernF = sincAdd1_3_8;
+            interpKernB = sincSub1_3_8;
             break;
         }
         case(9):
         {
-            const float *interpKernF = sincAdd1_3_9;
-            const float *interpKernB = sincSub1_3_9;
+            interpKernF = sincAdd1_3_9;
+            interpKernB = sincSub1_3_9;
             break;
         }
         case(10):
         {
-            const float *interpKernF = sincAdd1_3_10;
-            const float *interpKernB = sincSub1_3_10;
+            interpKernF = sincAdd1_3_10;
+            interpKernB = sincSub1_3_10;
             break;
         }
         case(11):
         {
-            const float *interpKernF = sincAdd1_3_11;
-            const float *interpKernB = sincSub1_3_11;
+            interpKernF = sincAdd1_3_11;
+            interpKernB = sincSub1_3_11;
             break;
         }
         case(12):
         {
-            const float *interpKernF = sincAdd1_3_12;
-            const float *interpKernB = sincSub1_3_12;
+            interpKernF = sincAdd1_3_12;
+            interpKernB = sincSub1_3_12;
             break;
         }
         case(13):
         {
-            const float *interpKernF = sincAdd1_3_13;
-            const float *interpKernB = sincSub1_3_13;
+            interpKernF = sincAdd1_3_13;
+            interpKernB = sincSub1_3_13;
             break;
         }
         case(14):
         {
-            const float *interpKernF = sincAdd1_3_14;
-            const float *interpKernB = sincSub1_3_14;
+            interpKernF = sincAdd1_3_14;
+            interpKernB = sincSub1_3_14;
             break;
         }
         case(15):
         {
-            const float *interpKernF = sincAdd1_3_15;
-            const float *interpKernB = sincSub1_3_15;
+            interpKernF = sincAdd1_3_15;
+            interpKernB = sincSub1_3_15;
             break;
         }
         case(0):
         {
-            const float *interpKernF = sincAdd1_3_0;
-            const float *interpKernB = sincSub1_3_0;
+            interpKernF = sincAdd1_3_0;
+            interpKernB = sincSub1_3_0;
             break;
         }
         default:
@@ -319,22 +319,33 @@ void sincInterp(my_image_comp* in, int h) {
            //will hit issue regarding the ordering
             //Should slide across in blocks
             //[][x][][][x][][][x][]
-            for (int i = -h; i < h; i++) {
-                Xwindow[-1] = Xwindow[-1] + (ip[i * 3] * interpKernB[-i]);
-                Xwindow[1] = Xwindow[1] + (ip[i*3]*interpKernF[-i]);//1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+            Xwindow[-1] = 0.0;
+            Xwindow[1] = 0.0;
+            for (int i = -h; i <= h; i++) {
+                Xwindow[-1] = Xwindow[-1] + (ip[-i*3]*interpKernB[i]);
+                Xwindow[1] = Xwindow[1] + (ip[-i*3]*interpKernF[i]);//1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
                 //3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
             }
             
         }
     }
-    //Vertical Interpolation on all columns (processed horizontally)
-    //for (int r = 0; r <= in->height; r += 3)
+    ////Vertical Interpolation on all columns (processed horizontally)
+    //for (int r = 1; r <= in->height; r += 3)
     //{
     //    float* Xwindow = XwindowEntry + r * (in->stride);
     //    for (int xshift = 0; xshift < (in->width) + (in->border); xshift++, Xwindow = XwindowEntry + r * (in->stride) + xshift)
     //    {   
-    //        Xwindow[1* (in->stride)] = 1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
-    //        Xwindow[2* (in->stride)] = 1.0;//3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+
+    //        ip = Xwindow;
+    //        //will hit issue regarding the ordering
+    //            //Should slide across in blocks
+    //            //[][x][][][x][][][x][]
+    //        for (int i = -h; i <= h; i++)
+    //        {
+    //            Xwindow[-1* (in->stride)] = Xwindow[-1* (in->stride)] + (ip[-i * 3 * (in->stride)] * interpKernB[i]);
+    //            Xwindow[1* (in->stride)] = Xwindow[1*(in->stride)] + (ip[-i * 3* (in->stride)] * interpKernF[i]);//1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+    //            //3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+    //        }
     //    }
     //}
     return;
@@ -420,9 +431,15 @@ main(int argc, char* argv[])
         // Allocate storage for the filtered output
         // Process the image, all in floating point (easy)
         for (n = 0; n < num_comps; n++)
+        {
             input_comps[n].perform_boundary_extension();
+        }
+
         for (n = 0; n < num_comps; n++)
+        {
             sincInterp(input_comps + n, h);
+        }
+            
 
 
         int temp_val;
