@@ -1,9 +1,7 @@
 ﻿C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(524,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
 C:\Program Files\Microsoft Visual Studio\2022\Community\MSBuild\Microsoft\VC\v170\Microsoft.CppBuild.targets(538,5): warning MSB8028: The intermediate directory (x64\Debug\) contains files shared from another project (Task1.vcxproj).  This can lead to incorrect clean and rebuild behavior.
-  io_bmp.cpp
   main.cpp
 C:\Github_Repos\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Task1\main.cpp(119,27): warning C4305: 'initializing': truncation from 'double' to 'float'
 C:\Github_Repos\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Task1\main.cpp(171,100): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 C:\Github_Repos\ELEC4622_Work\Projects\Project1\Project1_Solutoin\Task1\main.cpp(184,128): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-  Generating Code...
   Task1.vcxproj -> C:\Github_Repos\ELEC4622_Work\Projects\Project1\bin\Project1_Task1.exe

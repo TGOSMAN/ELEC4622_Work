@@ -274,19 +274,25 @@ main(int argc, char* argv[])
   
         
         int temp_val;
-        io_byte* lineOut = new io_byte[3*width * num_comps];
+        io_byte* lineOut = new io_byte[3*width];
         // Write the image back out again
         bmp_out out;
-        if ((err_code = bmp_out__open(&out, argv[2], 3*width, 3*height, num_comps)) != 0)
+        if ((err_code = bmp_out__open(&out, argv[2], 3*width, 3*height,1)) != 0)
             throw err_code;
         for (r = 3*height - 1; r >= 0; r--)
         { // "r" holds the true row index we are writing, since the image is
           // written upside down in BMP files.
-            for (n = 0; n < num_comps; n++)
-            {
-                io_byte* dst = lineOut + n; // Points to first sample of component n
+            /*for (n = 0; n < num_comps; n++)
+            {*/
+                if (num_comps > 1) {
+                    n = 1;
+                }
+                else {
+                    n = 0;
+                }
+                io_byte* dst = lineOut; // Points to first sample of component n
                 float* src = input_comps[n].buf + r * input_comps[n].stride;
-                for (int c = 0; c < 3*width ; c++, dst += num_comps) {
+                for (int c = 0; c < 3*width ; c++, dst++) {
                     temp_val = (int)(src[c] + 0.5);
                     if (temp_val < 0) {
                         *dst = 0;
@@ -307,7 +313,7 @@ main(int argc, char* argv[])
                       // compiler will warn you of this if you remove the cast.
                       // There is in fact not the best way to do the
                       // conversion.  You should fix it up in the lab.
-            }
+            //}
             bmp_out__put_line(&out, lineOut);
         }
         bmp_out__close(&out);
