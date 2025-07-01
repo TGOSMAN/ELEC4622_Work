@@ -197,7 +197,7 @@ void bilInterp(my_image_comp* in, int expansionFactor) {
 
 void sincInterp(my_image_comp* in, int h) {
     int xWindow_extent = 2*h+1;
-    float* XwindowEntry = in->buf +1 ;//in->buf +(in->stride) - (in->border);//line up with top left corner of Actual Image then down one row and right across to the border
+    float* XwindowEntry = in->buf +1;//in->buf +(in->stride) - (in->border);//line up with top left corner of Actual Image then down one row and right across to the border
     float* ip = in->handle;//input Pointer to keep Track Of values in terms of multiple of 3
     float* op = in->handle;//
     /*float* const float *interpKernF ;
@@ -305,12 +305,14 @@ void sincInterp(my_image_comp* in, int h) {
         }
         default:
         {
-            const float* interpKernF = sincAdd1_3_0;
-            const float* interpKernB = sincSub1_3_0;
+            interpKernF = sincAdd1_3_0;
+            interpKernB = sincSub1_3_0;
         }
     }
+    interpKernF += h;
+    interpKernB += h;
     //Horizontal Interpolation on select rows
-    for (int r = 1; r < in->height + 2 * (in->border); r += 3)
+    for (int r = 1-(3*h); r < in->height + (in->border); r += 3)
     {
         float* Xwindow = XwindowEntry + r * (in->stride);
         for (int xshift = 0; xshift <= (in->width); xshift+=3, Xwindow = XwindowEntry + r * (in->stride) + xshift)
@@ -330,24 +332,22 @@ void sincInterp(my_image_comp* in, int h) {
         }
     }
     ////Vertical Interpolation on all columns (processed horizontally)
-    //for (int r = 1; r <= in->height; r += 3)
-    //{
-    //    float* Xwindow = XwindowEntry + r * (in->stride);
-    //    for (int xshift = 0; xshift < (in->width) + (in->border); xshift++, Xwindow = XwindowEntry + r * (in->stride) + xshift)
-    //    {   
-
-    //        ip = Xwindow;
-    //        //will hit issue regarding the ordering
-    //            //Should slide across in blocks
-    //            //[][x][][][x][][][x][]
-    //        for (int i = -h; i <= h; i++)
-    //        {
-    //            Xwindow[-1* (in->stride)] = Xwindow[-1* (in->stride)] + (ip[-i * 3 * (in->stride)] * interpKernB[i]);
-    //            Xwindow[1* (in->stride)] = Xwindow[1*(in->stride)] + (ip[-i * 3* (in->stride)] * interpKernF[i]);//1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
-    //            //3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
-    //        }
-    //    }
-    //}
+    for (int r = 1; r < in->height; r += 3)
+    {
+        float* Xwindow = (XwindowEntry + r * (in->stride))-1;
+        for (int xshift = 0; xshift < (in->width); xshift++, Xwindow = XwindowEntry + (r * (in->stride) + xshift) -1)
+        {   
+            ip = Xwindow;
+            //will hit issue regarding the ordering
+                //Should slide across in blocks
+            for (int i = -h; i <= h; i++)
+            {
+                Xwindow[-1* (in->stride)] = Xwindow[-1*(in->stride)] + (ip[-i*3*(in->stride)] * interpKernB[i]);
+                Xwindow[1* (in->stride)] = Xwindow[1*(in->stride)] + (ip[-i*3*(in->stride)] * interpKernF[i]);//1.0;//3M + 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+                //3M - 1 (the first one after a multiple of 3) should be convolving or mirror and inner product using the add_1_3
+            }
+        }
+    }
     return;
 }
 
@@ -437,7 +437,7 @@ main(int argc, char* argv[])
 
         for (n = 0; n < num_comps; n++)
         {
-            sincInterp(input_comps + n, h);
+            sincInterp(&input_comps[n], h);
         }
             
 

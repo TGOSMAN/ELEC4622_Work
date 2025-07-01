@@ -1,14 +1,17 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\",
+  "WorkspaceRootPath": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{026DA8FD-22B3-47D9-855B-E63ECB41877A}|Task2\\Task2.vcxproj|C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{026DA8FD-22B3-47D9-855B-E63ECB41877A}|Task2\\Task2.vcxproj|C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{026DA8FD-22B3-47D9-855B-E63ECB41877A}|Task2\\Task2.vcxproj|solutionrelative:Task2\\main.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{026DA8FD-22B3-47D9-855B-E63ECB41877A}|Task2\\Task2.vcxproj|C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\SincWindowedLut.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{026DA8FD-22B3-47D9-855B-E63ECB41877A}|Task2\\Task2.vcxproj|C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\SincWindowedLut.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{026DA8FD-22B3-47D9-855B-E63ECB41877A}|Task2\\Task2.vcxproj|solutionrelative:Task2\\SincWindowedLut.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\delete_scalar.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,7 +21,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -26,26 +29,39 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "delete_scalar.cpp",
+              "DocumentMoniker": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "ToolTip": "C:\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\Program Files\\Microsoft Visual Studio\\2022\\Community\\VC\\Tools\\MSVC\\14.44.35207\\crt\\src\\vcruntime\\delete_scalar.cpp",
+              "ViewState": "AgIAABoAAAAAAAAAAAAMwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-30T22:32:20.831Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
               "Title": "SincWindowedLut.h",
-              "DocumentMoniker": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\SincWindowedLut.h",
+              "DocumentMoniker": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\SincWindowedLut.h",
               "RelativeDocumentMoniker": "Task2\\SincWindowedLut.h",
-              "ToolTip": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\SincWindowedLut.h",
+              "ToolTip": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\SincWindowedLut.h",
               "RelativeToolTip": "Task2\\SincWindowedLut.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABIAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-06-30T08:25:59.132Z",
+              "WhenOpened": "2025-06-30T21:21:58.545Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "main.cpp",
-              "DocumentMoniker": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\main.cpp",
+              "DocumentMoniker": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\main.cpp",
               "RelativeDocumentMoniker": "Task2\\main.cpp",
-              "ToolTip": "C:\\GithubRepositories\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\main.cpp",
+              "ToolTip": "C:\\Github_Repos\\ELEC4622_Work\\Projects\\Project1\\Project1_Solutoin\\Task2\\main.cpp",
               "RelativeToolTip": "Task2\\main.cpp",
-              "ViewState": "AgIAAC4BAAAAAAAAAAAUwD4BAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAD0BAAAAAAAAAAAgwEsBAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-30T08:08:46.734Z",
               "EditorCaption": ""

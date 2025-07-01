@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LocalDebuggerCommandArguments>"C:\GithubRepositories\ELEC4622_Work\Projects\Project1\data\smallbarbara.bmp" "C:\GithubRepositories\ELEC4622_Work\Projects\Project1\data\smallbarbaraSinc.bmp"  "1"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"C:\Github_Repos\ELEC4622_Work\Projects\Project1\data\pens_rgb.bmp" "C:\Github_Repos\ELEC4622_Work\Projects\Project1\data\pens_rgbSinc15.bmp"  "15"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LocalDebuggerCommandArguments>"C:\GithubRepositories\ELEC4622_Work\Projects\Project1\data\smallbarbara.bmp" "C:\GithubRepositories\ELEC4622_Work\Projects\Project1\data\smallbarbaraSinc.bmp"  "1"</LocalDebuggerCommandArguments>
+    <LocalDebuggerCommandArguments>"C:\Github_Repos\ELEC4622_Work\Projects\Project1\data\pens_rgb.bmp" "C:\Github_Repos\ELEC4622_Work\Projects\Project1\data\pens_rgbSinc15.bmp"  "15"</LocalDebuggerCommandArguments>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
 </Project>
